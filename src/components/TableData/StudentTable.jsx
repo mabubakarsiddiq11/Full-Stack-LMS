@@ -39,35 +39,53 @@ import {
 
 const data = [
   {
-    id: "m5gr84i9",
-    name: 'Abubakar' ,
-    status: "active",
-    course: "Web And Mobile",
+    id: "1",
+    name: 'Abubakar',
+    rollNo: 243514,
+    course: "Web And Mobile Application",
   },
-  // {
-  //   id: "3u1reuv4",
-  //   amount: 242,
-  //   status: "success",
-  //   email: "Abe45@gmail.com",
-  // },
-  // {
-  //   id: "derv1ws0",
-  //   amount: 837,
-  //   status: "processing",
-  //   email: "Monserrat44@gmail.com",
-  // },
-  // {
-  //   id: "5kma53ae",
-  //   amount: 874,
-  //   status: "success",
-  //   email: "1 Year",
-  // },
-  // {
-  //   id: "bhqecj4p",
-  //   amount: 721,
-  //   status: "failed",
-  //   email: "carmella@hotmail.com",
-  // },
+  {
+    id: "2",
+    name: 'Ali',
+    rollNo: 243515,
+    course: "Computer Science",
+  },
+  {
+    id: "3",
+    name: 'John',
+    rollNo: 243516,
+    course: "Information Technology",
+  },
+  {
+    id: "4",
+    name: 'Adam',
+    rollNo: 243517,
+    course: "Software Engineering",
+  },
+  {
+    id: "5",
+    name: 'Michael',
+    rollNo: 243518,
+    course: "Data Science",
+  },
+  {
+    id: "6",
+    name: 'Sam',
+    rollNo: 243519,
+    course: "Cyber Security",
+  },
+  {
+    id: "7",
+    name: 'David',
+    rollNo: 243520,
+    course: "Web Development",
+  },
+  {
+    id: "8",
+    name: 'Ethan',
+    rollNo: 243521,
+    course: "Mobile Development",
+  },
 ]
 
 
@@ -103,31 +121,28 @@ export const columns = [
     ),
   },
   {
-    accessorKey: "status",
+    accessorKey: "course",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          Course
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("status")}</div>,
+    cell: ({ row }) => <div >{row.getValue("course")}</div>,
   },
   {
-    accessorKey: "course",
-    header: () => <div className="text-right">Course</div>,
+    accessorKey: "rollNo",
+    header: () => <div className="text-right">Roll No</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("course"))
+      const amount = parseFloat(row.getValue("rollNo"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-       
-        currency: "USD",
-      }).format(amount)
+      // Format the amount without a comma
+      const formatted = amount.toString(); // Changed to remove formatting
 
       return <div className="text-right font-medium">{formatted}</div>
     },
@@ -194,14 +209,14 @@ export function StudentTable() {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <Input
+        {/* <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue()) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
-        />
+        /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
