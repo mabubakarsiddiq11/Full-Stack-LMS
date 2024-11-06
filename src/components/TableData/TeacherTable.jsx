@@ -39,35 +39,53 @@ import {
 
 const data = [
   {
-    id: "m5gr84i9",
-    teacher: 'Bilal Qadir' ,
-    status: "Full Stack Developer",
-    experience: "4 Year",
+    id: "t1",
+    name: 'Mr. Ahmed Khan',
+    subject: "Web Development",
+    experience: "5 Years",
   },
-  // {
-  //   id: "3u1reuv4",
-  //   amount: 242,
-  //   status: "success",
-  //   email: "Abe45@gmail.com",
-  // },
-  // {
-  //   id: "derv1ws0",
-  //   amount: 837,
-  //   status: "processing",
-  //   email: "Monserrat44@gmail.com",
-  // },
-  // {
-  //   id: "5kma53ae",
-  //   amount: 874,
-  //   status: "success",
-  //   email: "1 Year",
-  // },
-  // {
-  //   id: "bhqecj4p",
-  //   amount: 721,
-  //   status: "failed",
-  //   email: "carmella@hotmail.com",
-  // },
+  {
+    id: "t2",
+    name: 'Mr. Bilal Qadir',
+    subject: "Data Science",
+    experience: "4 Years",
+  },
+  {
+    id: "t3",
+    name: 'Mr. John Smith',
+    subject: "Machine Learning",
+    experience: "6 Years",
+  },
+  {
+    id: "t4",
+    name: 'Mr. David Brown',
+    subject: "Software Engineering",
+    experience: "3 Years",
+  },
+  {
+    id: "t5",
+    name: 'Mr. Michael Johnson',
+    subject: "Cyber Security",
+    experience: "7 Years",
+  },
+  {
+    id: "t6",
+    name: 'Mr. Samuel Lee',
+    subject: "Database Management",
+    experience: "2 Years",
+  },
+  {
+    id: "t7",
+    name: 'Mr. Ethan White',
+    subject: "Mobile App Development",
+    experience: "8 Years",
+  },
+  {
+    id: "t8",
+    name: 'Mr. Daniel Green',
+    subject: "Cloud Computing",
+    experience: "4 Years",
+  },
 ]
 
 
@@ -96,30 +114,30 @@ export const columns = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: "Name",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("name")}</div>
     ),
   },
   {
-    accessorKey: "teacher",
+    accessorKey: "subject",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          teacher
+          Subject
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("teacher")}</div>,
+    cell: ({ row }) => <div >{row.getValue("subject")}</div>,
   },
   {
     accessorKey: "experience",
-    header: () => <div className="text-right">Duration</div>,
+    header: () => <div className="text-right">Experience</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("experience"))
 
@@ -163,7 +181,7 @@ export const columns = [
   },
 ]
 
-export function TeachersTable() {
+export function TeacherTable() {
   const [sorting, setSorting] = useState([])
   const [columnFilters, setColumnFilters] = useState(
     []

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useState } from "react"
+import * as React from "react";
+import { useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,11 +13,11 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+} from "@tanstack/react-table";
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -26,8 +26,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -35,42 +35,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 const data = [
   {
     id: "m5gr84i9",
-    course: 'Web And Mobile Application' ,
+    course: "Web And Mobile Application",
     status: "Active",
     duration: "1 Year",
   },
-  // {
-  //   id: "3u1reuv4",
-  //   amount: 242,
-  //   status: "success",
-  //   email: "Abe45@gmail.com",
-  // },
-  // {
-  //   id: "derv1ws0",
-  //   amount: 837,
-  //   status: "processing",
-  //   email: "Monserrat44@gmail.com",
-  // },
-  // {
-  //   id: "5kma53ae",
-  //   amount: 874,
-  //   status: "success",
-  //   email: "1 Year",
-  // },
-  // {
-  //   id: "bhqecj4p",
-  //   amount: 721,
-  //   status: "failed",
-  //   email: "carmella@hotmail.com",
-  // },
-]
-
-
+];
 
 export const columns = [
   {
@@ -113,30 +87,26 @@ export const columns = [
           Course
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("course")}</div>,
+    cell: ({ row }) => <div>{row.getValue("course")}</div>,
   },
   {
     accessorKey: "duration",
     header: () => <div className="text-right">Duration</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("duration"))
+      const duration = row.getValue("duration");
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
+      // Format the duration as a dollar duration
 
-      return <div className="text-right font-medium">{formatted}</div>
+      return <div className="text-right font-medium">{duration}</div>;
     },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const payment = row.original;
 
       return (
         <DropdownMenu>
@@ -158,19 +128,16 @@ export const columns = [
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
 
 export function CourseTable() {
-  const [sorting, setSorting] = useState([])
-  const [columnFilters, setColumnFilters] = useState(
-    []
-  )
-  const [columnVisibility, setColumnVisibility] =
-    useState({})
-  const [rowSelection, setRowSelection] = useState({})
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -189,14 +156,14 @@ export function CourseTable() {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue()) ?? ""}
+          placeholder="Filter Courses..."
+          value={table.getColumn("email")?.getFilterValue() ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
@@ -206,7 +173,7 @@ export function CourseTable() {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
               Columns
-               {/* <ChevronDown className="ml-2 h-4 w-4" /> */}
+              {/* <ChevronDown className="ml-2 h-4 w-4" /> */}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -225,7 +192,7 @@ export function CourseTable() {
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -245,7 +212,7 @@ export function CourseTable() {
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -305,5 +272,5 @@ export function CourseTable() {
         </div>
       </div>
     </div>
-  )
+  );
 }
